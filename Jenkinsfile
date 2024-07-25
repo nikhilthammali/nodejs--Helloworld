@@ -17,8 +17,7 @@ pipeline {
                 sh 'docker build -t ${DOCKER_IMAGE} .'
                 }
             }
-        }
-
+        
         stage('Push Docker Image') {
             steps {
                   // Log in to Docker Hub
@@ -34,4 +33,4 @@ pipeline {
         }       
 
     }
-}
+
