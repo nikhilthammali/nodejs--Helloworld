@@ -14,13 +14,13 @@ pipeline {
             }
         } 
        
-        stage('Build Docker Image') {
+        stage('Build docker image') {
             steps {
                 sh 'docker build -t ${DOCKER_IMAGE} .'
                 }
             }
        
-        stage('Dockerhub lohin') {
+        stage('Dockerhub login') {
             steps {
                   withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                   sh 'echo \$DOCKERHUB_PASSWORD | docker login -u \$DOCKERHUB_USERNAME --password-stdin docker.io'
