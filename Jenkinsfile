@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
     }
+    
     stages {
         stage('SCM Checkout') {
             steps {
@@ -12,19 +13,20 @@ pipeline {
                 }
             }
         } 
+       
         stage('Build Docker Image') {
             steps {
                 sh 'docker build -t ${DOCKER_IMAGE} .'
                 }
             }
-        
-        stage('Push Docker Image') {
+       
+        stage('Dockerhub lohin') {
             steps {
-                  // Log in to Docker Hub
                   withCredentials([usernamePassword(credentialsId: 'docker', passwordVariable: 'DOCKERHUB_PASSWORD', usernameVariable: 'DOCKERHUB_USERNAME')]) {
                   sh 'echo \$DOCKERHUB_PASSWORD | docker login -u \$DOCKERHUB_USERNAME --password-stdin docker.io'
-                    
-                  // Push Docker image to Docker Hub
+       
+        stage('Push Docker Image') {
+            steps {
                   sh 'docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE:TAG}'
                   sh 'docker push ${DOCKER_IMAGE:TAG}'
                 }
