@@ -30,9 +30,8 @@ pipeline {
                   sh 'docker tag ${DOCKER_IMAGE} ${DOCKER_IMAGE:TAG}'
                   sh 'docker push ${DOCKER_IMAGE:TAG}'
                 }
-            }
-
-        }       
-
-    }
+             }
+          }       
+      }
+   }
 }
