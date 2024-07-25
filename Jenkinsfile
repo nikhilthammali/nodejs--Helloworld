@@ -3,15 +3,15 @@ pipeline {
 
     environment {
         DOCKERHUB_CREDENTIALS = credentials('dockerhub-credentials-id')
-
-     stages {
+    }
+    stages {
         stage('Checkout') {
             steps {
                 // Checkout the source code from the repository
                 git 'https://github.com/nikhilthammali/nodejs-Helloworld.git'
+                }
             }
-        }
-
+        } 
         stage('Build Docker Image') {
             steps {
                 script {
